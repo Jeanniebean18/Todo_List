@@ -1,7 +1,5 @@
 class ChoresController < ApplicationController
   
- 
-  
   def create
     @user = User.find(params[:chore][:user_id])
     @chore = @user.chores.create(chore_params)

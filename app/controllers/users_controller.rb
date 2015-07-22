@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   
+  def to_param  # overridden
+    email
+  end
   def home
     redirect_to users_path
   end
@@ -58,7 +61,7 @@ class UsersController < ApplicationController
   
       if user_password == params[:user][:password]
         session[:user_id] = @user.id
-        redirect_to user_path(@user.id)
+        redirect_to profile_path # user_path(@user.id)
       else
         @error = true
         redirect_to login_path
@@ -67,11 +70,11 @@ class UsersController < ApplicationController
   end
   
   def show
-    if session[:user_id] && session[:user_id] == params[:id].to_i
-      @user = User.find(params[:id])
+    if session[:user_id] # && session[:user_id] == params[:id].to_i
+      @user = User.find(session[:user_id])
       render :profile
     else
-      redirect_to user_path("#{session[:user_id]}")
+      redirect_to login_path# user_path("#{session[:user_id]}")
     end
   end
   
