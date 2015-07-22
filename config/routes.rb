@@ -7,6 +7,7 @@ Rails.application.routes.draw do
    get "/logout" => "users#logout", :as => "logout"
    
    
+   
    resources :users, :chores
    
  #   Prefix Verb   URI Pattern               Controller#Action

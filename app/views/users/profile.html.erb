@@ -16,9 +16,18 @@ delete chores -->
 <!-- chores -->
 
 <%@chores = @user.chores %>
-
+<strong>Chores To-Do:</strong>
 <%@chores.each do |chore| %>
-<%= chore.name %>
+<% if chore.done =="false" %>
+<p><%= chore.name %><a href="<%= chore_path(chore.id) %>" data-method="put"> Mark as Done</a></p>
+<%end%>
+<%end%>
+
+<strong>Chores that are done:</strong>
+<%@chores.each do |chore| %>
+<% if chore.done =="true" %>
+<p><%= chore.name %><a href="<%= chore_path(chore.id) %>" data-method="put"> Mark as Not Done</a></p>
+<%end%>
 <%end%>
 
 Add new chore
