@@ -3,8 +3,9 @@ class UsersController < ApplicationController
   def to_param  # overridden
     email
   end
+  
   def home
-    redirect_to users_path
+    render :index
   end
   
   def index
