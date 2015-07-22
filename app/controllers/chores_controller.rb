@@ -21,6 +21,14 @@ class ChoresController < ApplicationController
       redirect_to user_path(session[:user_id])
     end
   end
+  def destroy
+    @chore = Chore.find(params[:id])
+    @chore.destroy
+    redirect_to user_path(session[:user_id])
+  end
+  
+  
+
 
   # chore params method
   def chore_params
