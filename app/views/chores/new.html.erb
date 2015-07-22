@@ -1,0 +1,10 @@
+
+<%= form_tag chores_path, :method => "post" do %>
+  <p>
+  Chore Name: <input type="text" placeholder="chore" name="name" 
+  required>
+  <input type="hidden" name="user_id" 
+  value="<%= session[:user_id] %>">
+  <input type="submit" value="submit">
+  </p>
+<%end%>

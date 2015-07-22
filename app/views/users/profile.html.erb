@@ -14,18 +14,25 @@ delete chores -->
 <p><a href = "<%= logout_path %>">log out</a></p>
 
 <!-- chores -->
+
+<%@chores = @user.chores %>
+
+<%@chores.each do |chore| %>
+<%= chore.name %>
+<%end%>
+
 Add new chore
 
 <%= form_tag chores_path, :method => "post" do %>
   <p>
   Chore Name: <input type="text" placeholder="chore" name="chore[name]" 
-  value="" required>
+  required>
   <input type="hidden" name="chore[user_id]" 
-  value="<%= @user.id %>" required>
+  value="<%= @user.id %>">
   <input type="hidden" name="chore[done]" 
-  value="<%= false %>" required>
-  </p>
- <input type="submit" value="submit">
+  value="false">
+  <input type="submit" value="submit">
   </p>
 <%end%>
+
 
