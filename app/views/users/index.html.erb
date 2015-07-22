@@ -1,3 +1,7 @@
+
+All users
 <%@user.each do |user| %>
-  <p><a href="/login"><%= user.id %><%= user.name %> <%= user.email %></p></a>
+  <p><a href="/login"><%= user.id %><%= user.email %> </p></a>
 <%end%>
+
+<a href="<%= new_user_path %>">Add new user</a>

@@ -33,15 +33,41 @@ class UsersController < ApplicationController
     redirect_to login_path
   end
   
+  def valid
+    @user = User.where(email:params[:user][:email]).first
+    if @user.nil?
+      @error = true
+      redirect_to login_path
+    else
+      user_password = BCrypt::Password.new(@user.password)
+  
+      if user_password == params[:user][:password]
+        session[:user_id] = @user.id
+        redirect_to user_path(@user.id)
+      else
+        @error = true
+        redirect_to login_path
+      end
+    end
+  end
+  
+  def show
+    if session[:user_id] && session[:user_id] == params[:id].to_i
+      @user = User.find(params[:id])
+      render :profile
+    else
+      redirect_to user_path("#{session[:user_id]}")
+    end
+  end
   
   # user params method
   def user_params
-  params[:user].permit(:email, :password)
+    params[:user].permit(:email, :password)
   end
   
   # chore params method
   def chore_params
-  params[:chore].permit(:name, :done)
+    params[:chore].permit(:name, :done)
   end
   
 end
