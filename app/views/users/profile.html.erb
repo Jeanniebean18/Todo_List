@@ -12,3 +12,16 @@ delete chores -->
 <a href="<%=user_path(@user.id)%>" data-method="delete" data-confirm="Are you sure?">delete profile</a>
 
 <p><a href = "<%= logout_path %>">log out</a></p>
+
+<!-- chores -->
+Add new chore
+
+<%= form_tag chores_path, :method => "post" do %>
+  <p>
+  Chore Name: <input type="email" placeholder="chore" name="chore[name]" 
+  value="" required>
+  </p>
+ <input type="submit" value="submit">
+  </p>
+<%end%>
+

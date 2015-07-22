@@ -86,9 +86,5 @@ class UsersController < ApplicationController
     params[:user].permit(:email, :password)
   end
   
-  # chore params method
-  def chore_params
-    params[:chore].permit(:name, :done)
-  end
-  
+ 
 end
