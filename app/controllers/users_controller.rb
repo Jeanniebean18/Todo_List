@@ -12,6 +12,15 @@ class UsersController < ApplicationController
     @user = User.new
   end
   
+  def login
+    @user = User.new
+  end
+  
+  def logout
+    session[:user_id] = nil
+    redirect_to login_path
+  end
+  
   def create
     the_password = BCrypt::Password.create(params[:user][:password])
     @user = User.new(user_params)
@@ -24,13 +33,19 @@ class UsersController < ApplicationController
     end
   end
   
-  def login
-    @user = User.new
+  def edit
+    if session[:user_id] && session[:user_id] == params[:id].to_i
+      @user = User.find(params[:id])
+      render :edit
+    else
+      redirect_to user_path("#{session[:user_id]}")
+    end
   end
   
-  def logout
-    session[:user_id] = nil
-    redirect_to login_path
+  def update
+    @user = User.find(params[:id])
+    @user.update_attributes(user_params)
+    redirect_to user_path(@user.id)
   end
   
   def valid

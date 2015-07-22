@@ -1,1 +1,14 @@
 <%= @user.email %> profile
+
+<!-- edit profle
+delete profile
+logout
+
+show chores
+add chores
+delete chores -->
+
+<a href="<%=edit_user_path(@user.id)%>">Edit profile</a>
+<a href="<%=user_path(@user.id)%>" data-method="delete" data-confirm="Are you sure?">delete profile</a>
+
+
