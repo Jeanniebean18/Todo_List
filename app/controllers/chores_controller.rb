@@ -1,20 +1,15 @@
 class ChoresController < ApplicationController
   
   def create
-    
-    @chore = Chore.new(chore_params)
-    @chore.done = false
-    if @chore.save
-      redirect_to user_path(session[:user_id]) 
-    else
-      @error = true
-      redirect_to new_chore_path
+    @user = User.find(params[:chore][:user_id])
+    @user.chores.create(chore_params)
+    redirect_to user_path(session[:user_id]) 
     end
-  end
-end
 
 
 # chore params method
 def chore_params
-  params[:chore].permit(:name)
+  params[:chore].permit(:name, :done, :user_id)
+end
+
 end
