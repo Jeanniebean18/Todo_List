@@ -1,4 +1,33 @@
 Rails.application.routes.draw do
+  
+  
+   get "/" => "users#home"
+   get "/login" => "users#login" as: "login"
+   
+   
+   resources :users, :chores
+   
+ #   Prefix Verb   URI Pattern               Controller#Action
+ #     users GET    /users(.:format)          users#index
+ #           POST   /users(.:format)          users#create
+ #  new_user GET    /users/new(.:format)      users#new
+ # edit_user GET    /users/:id/edit(.:format) users#edit
+ #      user GET    /users/:id(.:format)      users#show
+ #           PATCH  /users/:id(.:format)      users#update
+ #           PUT    /users/:id(.:format)      users#update
+ #           DELETE /users/:id(.:format)      users#destroy
+ 
+ 
+ # chores GET    /chores(.:format)          chores#index
+ #            POST   /chores(.:format)          chores#create
+ #  new_chore GET    /chores/new(.:format)      chores#new
+ # edit_chore GET    /chores/:id/edit(.:format) chores#edit
+ #      chore GET    /chores/:id(.:format)      chores#show
+ #            PATCH  /chores/:id(.:format)      chores#update
+ #            PUT    /chores/:id(.:format)      chores#update
+ #            DELETE /chores/:id(.:format)      chores#destroy
+ 
+ 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
